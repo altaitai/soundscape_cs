@@ -170,11 +170,17 @@ namespace Soundscape
 
         private void SoundView_DragDrop(object sender, DragEventArgs e)
         {
+            // prevent dragging from/to SoundView
+            if (DraggingFromSoundView)
+            {
+                DraggingFromSoundView = false;
+                return;
+            }
+
             if (FileIsOpen)
             {
                 string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-                int i;
-                for (i = 0; i < s.Length; i++)
+                for (int i = 0; i < s.Length; i++)
                 {
                     try
                     {
@@ -188,20 +194,23 @@ namespace Soundscape
 
         private void SoundView_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-                e.Effect = DragDropEffects.All;
-            else
-                e.Effect = DragDropEffects.None;
+            if (FileIsOpen)
+            {
+                if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                    e.Effect = DragDropEffects.All;
+                else
+                    e.Effect = DragDropEffects.None;
+            }
         }
 
         private void SoundView_ItemActivate(object sender, EventArgs e)
         {
             if (FileIsOpen) {
-                if (SoundView.SelectedIndices.Count == 1)
+                if (SoundView.SelectedItems.Count == 1)
                 {
                     try
                     {
-                        Player.SoundLocation = OpenedFile.Sounds[SoundView.SelectedIndices[0]].Filepath;
+                        Player.SoundLocation = GetSelectedSoundPaths()[0];
                         Player.Play();
                     }
                     catch (Exception ex)
@@ -211,5 +220,72 @@ namespace Soundscape
                 }
             }
         }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SoundView.SelectedItems.Count > 0)
+            {
+                Clipboard.Clear();
+                Clipboard.SetData(DataFormats.FileDrop, GetSelectedSoundPaths());
+            }
+        }
+
+        private void SoundView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (SoundView.SelectedItems.Count > 0)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    DraggingFromSoundView = true;
+                    SoundView.DoDragDrop(new DataObject(DataFormats.FileDrop, GetSelectedSoundPaths()), DragDropEffects.Copy);
+                }
+            }
+        }
+
+        string[] GetSelectedSoundPaths()
+        {
+            string[] paths = new string[SoundView.SelectedItems.Count];
+            for (int i = 0; i < SoundView.SelectedItems.Count; i++)
+            {
+                paths[i] = SoundView.SelectedItems[i].SubItems[2].Text;
+            }
+            return paths;
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            if (FileIsOpen)
+            {
+                try
+                {
+                    string[] s = (string[])Clipboard.GetData(DataFormats.FileDrop);
+                    for (int i = 0; i < s.Length; i++)
+                    {
+                        try
+                        {
+                            OpenedFile.Sounds.Add(new SoundFile(s[i]));
+                        }
+                        catch (Exception) { }
+                    }
+                    UpdateSoundList();
+                }
+                catch (Exception) { }
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FileIsOpen)
+            {
+                foreach (string path in GetSelectedSoundPaths())
+                {
+                    OpenedFile.Sounds.RemoveAll(x => x.Filepath == path);
+                }
+                UpdateSoundList();
+            }
+        }
+
+        bool DraggingFromSoundView = false;
     }
 }
