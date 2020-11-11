@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,21 +38,20 @@
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.libraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.soundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.OpenFileStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.SoundCountStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.SoundView = new System.Windows.Forms.ListView();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.soundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainFormMenuStrip.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormMenuStrip
             // 
-            this.MainFormMenuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.MainFormMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.MainFormMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -124,15 +124,46 @@
             this.pasteToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(75, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(75, 36);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // libraryToolStripMenuItem
             // 
             this.libraryToolStripMenuItem.Name = "libraryToolStripMenuItem";
-            this.libraryToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.libraryToolStripMenuItem.Size = new System.Drawing.Size(287, 44);
             this.libraryToolStripMenuItem.Text = "Library";
             this.libraryToolStripMenuItem.Click += new System.EventHandler(this.libraryToolStripMenuItem_Click);
+            // 
+            // soundToolStripMenuItem
+            // 
+            this.soundToolStripMenuItem.Name = "soundToolStripMenuItem";
+            this.soundToolStripMenuItem.Size = new System.Drawing.Size(287, 44);
+            this.soundToolStripMenuItem.Text = "Sound";
+            this.soundToolStripMenuItem.Click += new System.EventHandler(this.soundToolStripMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(287, 44);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(287, 44);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(287, 44);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // MainStatusStrip
             // 
@@ -175,36 +206,6 @@
             this.SoundView.DragEnter += new System.Windows.Forms.DragEventHandler(this.SoundView_DragEnter);
             this.SoundView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SoundView_MouseDown);
             // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
-            // 
-            // soundToolStripMenuItem
-            // 
-            this.soundToolStripMenuItem.Name = "soundToolStripMenuItem";
-            this.soundToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.soundToolStripMenuItem.Text = "Sound";
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -215,6 +216,7 @@
             this.Controls.Add(this.MainStatusStrip);
             this.Controls.Add(this.MainFormMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainFormMenuStrip;
             this.Name = "MainForm";
             this.Text = "Soundscape";

@@ -165,6 +165,7 @@ namespace Soundscape
                 {
                     SoundView.Items.Add(new ListViewItem(file.GetFields()));
                 }
+                SoundView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
         }
 
@@ -213,10 +214,7 @@ namespace Soundscape
                         Player.SoundLocation = GetSelectedSoundPaths()[0];
                         Player.Play();
                     }
-                    catch (Exception ex)
-                    {
-                        // TODO log in status bar
-                    }
+                    catch (Exception) { }
                 }
             }
         }
@@ -287,5 +285,25 @@ namespace Soundscape
         }
 
         bool DraggingFromSoundView = false;
+
+        private void soundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FileIsOpen)
+            {
+                foreach (string path in GetSelectedSoundPaths())
+                {
+                    SoundFile file = OpenedFile.Sounds.Find(x => x.Filepath == path);
+                    if (file != null)
+                    {
+                        SoundSettingsForm form = new SoundSettingsForm(file);
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            form.UpdateSound(file);
+                        }
+                    }
+                    UpdateSoundList();
+                }
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Soundscape
 
         public string Value { get; set; }
 
-        public abstract void Render(Form form, ref int height);
+        public abstract void Render(Form form, ref int totalHeight);
 
         public abstract void ChangeControlValue(Form form, string value);
     }
