@@ -41,10 +41,12 @@ namespace Soundscape
         {
             Text = Caption;
             Width = Constants.DialogWidth;
-            AutoSize = true;
-            AutoSizeMode = AutoSizeMode.GrowOnly;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             int totalHeight = Constants.DialogPadding;
+
+            // weird bug workaround
+            Height = 0;
+            int topBarHeight = Height;
 
             // render custom settings
             if (Settings != null)
@@ -61,6 +63,7 @@ namespace Soundscape
                 Text = "Save",
                 Left = Constants.DialogPadding,
                 Top = totalHeight,
+                Height = Constants.BoxHeight,
                 DialogResult = DialogResult.OK
             };
             Button cancelButton = new Button
@@ -68,14 +71,13 @@ namespace Soundscape
                 Text = "Cancel",
                 Left = saveButton.Width + 2*Constants.DialogPadding,
                 Top = totalHeight,
+                Height = Constants.BoxHeight,
                 DialogResult = DialogResult.Cancel
             };
             Controls.Add(saveButton);
             Controls.Add(cancelButton);
-
-            // adjust total height
-            totalHeight += saveButton.Height + Constants.DialogPadding;
-            Height = totalHeight;
+            totalHeight += Constants.BoxHeight + Constants.DialogPadding;
+            Height = topBarHeight + totalHeight;
         }
 
         public SettingsForm()

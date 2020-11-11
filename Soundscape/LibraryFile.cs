@@ -28,6 +28,7 @@ namespace Soundscape
             XmlDocument doc = new XmlDocument();
             doc.Load(filepath);
             Parse(doc);
+            Filepath = filepath;
         }
 
 
