@@ -46,19 +46,22 @@
             this.OpenFileStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.SoundCountStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.SoundView = new System.Windows.Forms.ListView();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainFormMenuStrip.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormMenuStrip
             // 
+            this.MainFormMenuStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.MainFormMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.MainFormMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.MainFormMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainFormMenuStrip.Name = "MainFormMenuStrip";
-            this.MainFormMenuStrip.Size = new System.Drawing.Size(1504, 40);
+            this.MainFormMenuStrip.Size = new System.Drawing.Size(1504, 48);
             this.MainFormMenuStrip.TabIndex = 0;
             this.MainFormMenuStrip.Text = "menuStrip1";
             // 
@@ -71,7 +74,7 @@
             this.saveAsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(72, 36);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(72, 44);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
@@ -124,7 +127,7 @@
             this.pasteToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(75, 36);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(75, 44);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // libraryToolStripMenuItem
@@ -195,9 +198,9 @@
             this.SoundView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SoundView.FullRowSelect = true;
             this.SoundView.HideSelection = false;
-            this.SoundView.Location = new System.Drawing.Point(0, 40);
+            this.SoundView.Location = new System.Drawing.Point(0, 48);
             this.SoundView.Name = "SoundView";
-            this.SoundView.Size = new System.Drawing.Size(1504, 800);
+            this.SoundView.Size = new System.Drawing.Size(1504, 792);
             this.SoundView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.SoundView.TabIndex = 2;
             this.SoundView.UseCompatibleStateImageBehavior = false;
@@ -205,6 +208,14 @@
             this.SoundView.DragDrop += new System.Windows.Forms.DragEventHandler(this.SoundView_DragDrop);
             this.SoundView.DragEnter += new System.Windows.Forms.DragEventHandler(this.SoundView_DragEnter);
             this.SoundView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SoundView_MouseDown);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(100, 44);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -248,6 +259,7 @@
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

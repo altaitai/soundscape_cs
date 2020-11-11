@@ -33,7 +33,8 @@ namespace Soundscape
             {
                 Left = Constants.DialogPadding,
                 Top = totalHeight,
-                Text = LabelText
+                Text = LabelText,
+                Width = form.Width / 2 - 2 * Constants.DialogPadding
             };
             form.Controls.Add(label);
 
@@ -43,7 +44,7 @@ namespace Soundscape
                 Left = form.Width / 2 - Constants.DialogPadding,
                 Top = totalHeight,
                 Height = Constants.BoxHeight,
-                Width = form.Width / 2 - 2*Constants.DialogPadding
+                Width = form.Width / 2 - 2 * Constants.DialogPadding
             };
 
             box.TextChanged += SetValueCallback;
